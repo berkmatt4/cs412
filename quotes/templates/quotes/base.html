@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+    <head>
+        <title>Bruce Dickinson Quotes</title>
+        <link rel="stylesheet" href="{% static '/quotes/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Bruce Dickinson's Notable Quotes</h1>
+        </header>
+        <div class = "nav-separator">
+            <nav>
+                <ul>
+                    <li><a href = "{% url 'quote_page' %}">Bruce Dickinson Quotes</a></li>
+                    <li><a href = "{% url 'all_page' %}">All Quotes</a></li>
+                    <li><a href = "{% url 'about_page' %}">About this Website</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class = "nav-separator">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <p>Page created by Matthew Berk. All rights reserved.</p>
+            <p>You opened this page on {{current_time}}</p>
+        </footer>
+    </body>
+</html>

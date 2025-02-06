@@ -1,0 +1,20 @@
+{% extends 'quotes/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div>
+    <h3>All Quotes</h3>
+    {% for quote in quotes %}
+    <div id = "quote-container">
+        <p>{{quote}}</p>
+    </div>
+    {% endfor %}
+    {% for image in images %}
+    <div id = "image-container">
+        <img src = "{% static image %}">
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
