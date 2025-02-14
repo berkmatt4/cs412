@@ -1,0 +1,44 @@
+<!--Confirmation template to be displayed after user submits the form
+It spits back out all entered information and gives a dynamically
+selected time for their order to be ready-->
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class = "confirmation-container">
+    <h2>Confirmation</h2>
+    <h3>Hi, {{name}}</h3>
+
+    <table id = "contact-info">
+        <caption>Contact Info</caption>
+        <tr>
+            <td>Email Address:</td>
+            <td>{{email}}</td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td>{{phone_number}}</td>
+        </tr>
+    </table>
+
+    <table id = "order-info">
+        <caption>Order Info</caption>
+        {% for item, cost in ordered_items %}
+        <tr>
+            <td>{{item}}</td>
+            <td>{{cost}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Total Cost: </td>
+            <td>{{order_cost}}</td>
+        </tr>
+    </table>
+
+    <p>Special Instructions: {{additional_comments}}</p>
+
+    <p>You ordered at {{time_ordered}} and your food should be ready by {{time_ready}}</p>
+</div>
+
+{% endblock %}

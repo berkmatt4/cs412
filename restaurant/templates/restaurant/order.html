@@ -1,0 +1,46 @@
+<!--order.html is a template for the page to place your order
+It includes a form with 4 options, one of which (breakfast wrap)
+has optional add ons. Another is a randomyl selected special-->
+{% extends 'restaurant/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div>
+    <form class = "order-form" action="{% url 'confirmation' %}" method = "POST">
+        {% csrf_token %}
+        <label for="name">Your name:</label>
+        <input type="text" id="name" name="name" required="required"> <br>
+
+        <label for="phone-number">Phone number:</label>
+        <input type="text" name="phone-number" id="phone-number" required="required"> <br>
+
+        <label for="email">Email address:</label>
+        <input type="text" name="email" id="email" required="required"> <br>
+        <br>
+
+        <input type="checkbox" id="option1" name="option" value="Meatball Wrap, 14.99">
+        <label for="option1">Meatball Wrap, 14.99</label> <br><br>
+
+        <input type="checkbox" id="option2" name="option" value="Turkey Wrap, 12.99">
+        <label for="option2">Turkey Wrap, 12.99</label><br><br>
+
+        <input type="checkbox" id="option3" name="option" value="{{ special }}">
+        <label for="option3">Today's special: {{special}}</label><br><br>
+
+        <input type="checkbox" id="option4" name="option" value="Breakfast Wrap, 13.99">
+        <label for="option4">Breakfast Wrap, 13.99</label><br>
+        <input type="radio" name="meat" id="sausage" value="Sausage, 3.99">
+        <label for="sausage">Sausage, 3.99</label><br>
+        <input type="radio" name="meat" id="bacon" value="Bacon, 2.99">
+        <label for="bacon">Bacon, 2.99</label> <br><br>
+
+        <textarea name="additional" id="additional" rows="10" 10 cols="60" placeholder = "Special Instructions:"></textarea>
+
+        <input type="submit">
+
+    </form>
+</div>
+
+{% endblock %}

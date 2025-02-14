@@ -1,0 +1,27 @@
+{% load static %}
+<!--Template to handle the base webpage-->
+
+<html>
+    <head>
+        <title>Restaurant Application</title>
+        <link rel="stylesheet" href="{% static '/restaurant/styles.css' %}">
+    </head>
+
+    <body>
+        <div id = "container">
+        <header>
+            <h1>The Daily Wrap</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'main' %}">Restaurant Homepage</a></li>
+                <li><a href="{% url 'order' %}">Place an Order</a></li>
+            </ul>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

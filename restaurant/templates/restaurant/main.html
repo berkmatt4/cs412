@@ -1,0 +1,32 @@
+<!--Main template provides base URL template as well as some
+info about the restaurant-->
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class = "main-container">
+    <h2>Information</h2>
+
+    <h3>The Daily Wrap</h3>
+    <br>
+
+    <h4>37 Gainsborough Road, Holbrook, NY 11741</h4>
+    <br>
+    <h4>We are a wrap shop, serving fresh wraps daily including our daily special!</h4>
+    <h4>Hours of Operation:</h4>
+    <ul>
+        <li>Sunday: 11am-4pm</li>
+        <li>Monday: 9am-6pm</li>
+        <li>Tuesday: 9am-6pm</li>
+        <li>Wednesday: 9am-6pm</li>
+        <li>Thursday: 9am-6pm</li>
+        <li>Friday: 9am-8pm</li>
+        <li>Saturday: 9am-8pm</li>
+    </ul>
+
+    <!--<img src="{% static '/restaurant/images/restaurant.jpg' %}" alt="Photo of The Daily Wrap">-->
+    <img src="{% static '/restaurant/images/chicken_wrap.jpg' %}" alt="Our Chicken Caesar Wrap">
+</div>
+
+{% endblock %}
