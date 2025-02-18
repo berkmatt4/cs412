@@ -1,0 +1,23 @@
+<!--Base html page to display block content and load resources-->
+
+{% load static %}
+<html>
+    <head>
+        <title>Mini FB Application</title>
+        <link rel="stylesheet" href="{% static 'mini_fb/styles.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <h1>Our FB App</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'show_all_profiles' %}">Back to Home</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

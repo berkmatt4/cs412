@@ -1,0 +1,18 @@
+<!--Template to show a single profile-->
+{% extends 'mini_fb/base.html'%}
+
+{%block content %}
+
+<div class="profile-container">
+    <div class="profile-image">
+        <img src="{{profile.profile_image_url}}" alt="Image of {{profile.first_name}}">
+    </div>
+
+    <div class="profile-details">
+        <h1>{{profile.first_name}} {{profile.last_name}}</h1>
+        <h2>{{profile.city}}</h2>
+        <h3>{{profile.email_address}}</h3>
+    </div>
+</div>
+
+{% endblock %}

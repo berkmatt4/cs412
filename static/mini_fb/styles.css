@@ -1,0 +1,102 @@
+/* styles.css */
+body {
+    background-color: lightgray;
+    font-family: Arial, sans-serif;
+    color: darkblue;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: navy;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: darkblue;
+    color: white;
+}
+
+img {
+    max-width: 300px; /* Further increased image size */
+    height: auto;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.profile-image {
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: darkblue;
+    margin: 10px 0;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 10px;
+    color: darkgreen;
+}
+
+div {
+    margin: 20px;
+}
