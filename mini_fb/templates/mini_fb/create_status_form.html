@@ -10,7 +10,7 @@
 <form method = "POST">
     {% csrf_token %}
     <table class = "create-status-form">
-        {{form.as_table}}
+        {{form.as_table}}       <!--This will be the CreateStatusForm-->
     </table>
 
     <input type = "submit" name = "Upload Status" id = "Upload Status">

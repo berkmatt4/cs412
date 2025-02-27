@@ -22,4 +22,6 @@ class CreateStatusMessageForm(forms.ModelForm):
     class Meta:
         '''class to associate the form with a model in the db'''
         model = StatusMessage
+
+        #only field needed here is message
         fields = ['message']

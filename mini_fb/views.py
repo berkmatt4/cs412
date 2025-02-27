@@ -41,12 +41,14 @@ class CreateStatusMessageView(CreateView):
 
         pk = self.kwargs['pk']
 
-        return reverse('show_profile', kwargs = {'pk': pk})
+        return reverse('show_profile', kwargs = {'pk': pk}) #need to get reverse URL to display the profile associated with the status message
     
     def get_context_data(self):
         '''overriding this method in order to retrieve
         the profile associated with the status message'''
 
+        #using the superclass method to get the profile associated with the status message
+        #this allows us to display data relating to the profile on the page
         context = super().get_context_data()
 
         pk = self.kwargs['pk']
@@ -62,7 +64,7 @@ class CreateStatusMessageView(CreateView):
         print(form.cleaned_data)
 
         pk = self.kwargs['pk']
-        profile = Profile.objects.get(pk=pk)
+        profile = Profile.objects.get(pk=pk)    #must make sure that our data is associated with a PK
 
         form.instance.profile = profile
 
