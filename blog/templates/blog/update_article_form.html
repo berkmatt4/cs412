@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {%block content%}
-<form action="{% url 'create_article' %}" method ="POST"
+<form action="{% url 'update_article' article.pk%}" method ="POST"
     enctype = "multipart/form-data">
 {% csrf_token %}
 <table>
@@ -9,5 +9,8 @@
 </table>
 
 <input type="submit" name="submit" id="Submit">
+</form>
+<form action="{% url 'article' article.pk %}" method = "GET">
+    <input type="submit" value = "Cancel">
 </form>
 {%endblock%}
