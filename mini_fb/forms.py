@@ -25,3 +25,20 @@ class CreateStatusMessageForm(forms.ModelForm):
 
         #only field needed here is message
         fields = ['message']
+
+class UpdateProfileForm(forms.ModelForm):
+    '''A class which presents a form to update a given profile'''
+
+    class Meta:
+        '''inner class associating the form with a model'''
+        model = Profile
+        fields = ['city', 'email_address', 'profile_image_url']
+
+class UpdateStatusForm(forms.ModelForm):
+    '''a class which presents a form to update a status message'''
+
+    class Meta:
+        '''associating the form with a model'''
+        model = StatusMessage
+
+        fields = ['message']

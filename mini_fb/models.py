@@ -42,3 +42,33 @@ class StatusMessage(models.Model):
     def __str__(self):
         '''create a string representation of a StatusMessage object'''
         return f'{self.message}'
+    
+    def get_images(self):
+        '''function to retrieve all images associated with the model'''
+        #getting all status images associated with this status message
+        status_images = StatusImage.objects.filter(status_message = self)
+        images = []
+        for img in status_images:
+            images.append(img.image_file)
+        return images
+
+
+
+class Image(models.Model):
+    '''A model to store images as files
+    Includes a foreign key to the Profile attached to the image'''
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)  #foreign key reference for a profile
+    image_file = models.ImageField(blank = False)
+    timestamp = models.DateTimeField(auto_now = True)
+    caption = models.TextField(blank=True)  #making this field optional
+
+    def __str__(self):
+        '''defining a toString method to print the image'''
+        return f'{self.profile.first_name} image: {self.image_file}'
+    
+class StatusImage(models.Model):
+    '''Representation of an image corresponding to a status message
+    includes two foreign keys: image_file, and status_message'''
+
+    image_file = models.ForeignKey(Image, on_delete=models.CASCADE)
+    status_message = models.ForeignKey(StatusMessage, on_delete=models.CASCADE)

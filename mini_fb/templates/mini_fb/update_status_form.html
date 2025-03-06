@@ -1,0 +1,20 @@
+<!--A template to update a status message-->
+
+{% extends 'mini_fb/base.html' %}
+
+{%block content%}
+<div class = "form-container">
+<form action="{% url 'update_status' status_message.pk%}" method ="POST"
+    enctype = "multipart/form-data">
+{% csrf_token %}
+<table>
+{{form.as_table}}
+</table>
+
+<input type="submit" name="submit" class = "button">
+</form>
+<form action="{% url 'show_profile' status_message.profile.pk %}" method = "GET">
+    <input type="submit" value = "Cancel" class = "button">
+</form>
+</div>
+{%endblock%}

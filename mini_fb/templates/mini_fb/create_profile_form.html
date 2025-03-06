@@ -5,15 +5,16 @@
 {% block content %}
 
 <h1>Create a new profile</h1>
-
+<div class = "form-container">
 <form action="{% url 'create_profile' %}" method = "POST">
     {% csrf_token %}
-    <table class = "create-profile-form">
+    <table>
         {{form.as_table}}       <!--This will be the CreateProfileForm-->
     </table>
 
-    <input type = "submit" name = "Create Profile" id = "Create Profile">
+    <input type = "submit" value = "Create Profile" class = "button">
 
 </form>
+</div>
 
 {% endblock %}
