@@ -16,14 +16,30 @@ shows all details for single person-->
         <div class = "links-container"> <!--Table for links to create a status message or update the profile-->
             <a href="{% url 'create_status' profile.pk %}">Create a status message</a>
             <a href="{%url 'update_profile' profile.pk %}">Update Profile</a>
+            <a href="{%url 'friend_suggestions' profile.pk %}">Friend Suggestions</a>
+            <a href="{%url 'show_news' profile.pk %}">News Feed</a>
         </div>
     </div>
+
+    <div class="friends-container">
+        {% for friend in profile.get_friends %}     <!--grabbing all of the friends and displayign their info-->
+            <div class = "friend-card">
+                <a href="{% url 'show_profile' friend.pk %}">
+                    <h4>{{friend.first_name}} {{friend.last_name}}</h4>
+                    <div class = "friend-img">
+                        <img src="{{friend.profile_image_url}}" alt="Image of {{profile.first_name}}">
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
     <div class = "status-messages">
-        {% for status in profile.get_status_message %}
+        {% for status in profile.get_status_message %}      <!--grabbing all of this profiles status messages-->
         <div class = "status-card">
             <h4>{{status.message}}</h4>
             <div class = "image-grid">
-                {% for img in status.get_images %}
+                {% for img in status.get_images %}              <!--then grab all images for the status-->
                 <img src="{{img.image_file.url}}" alt="{{img.image_file.url}}">
                 {%endfor%}
             </div>

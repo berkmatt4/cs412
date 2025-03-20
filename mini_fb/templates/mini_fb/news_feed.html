@@ -1,0 +1,27 @@
+<!--HTML template for displaying the news feed of a single profile
+It will display status messages, status images, and the profile who posted them-->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<h1>Showing {{profile.first_name}}'s news feed</h1>
+
+<a href="{% url 'show_profile' profile.pk %}">Back to profile</a>
+
+<div class = "news-feed-container">
+    {% for status_image in profile.get_news_feed %} <!--THis loop grabs all status image objects-->
+    <div class = "news-feed-item">
+        <h4>{{status_image.status_message.profile.first_name}} {{status_image.status_message.profile.last_name}} at {{status_image.status_message.published}}</h4>
+        <img class = "profile-pic" src="{{status_image.status_message.profile.profile_image_url}}" alt="Photo of {{status_image.status_message.profile.first_name}}">
+        <div class = "status-images">
+            {% for img in status_image.status_message.get_images %} <!--This loop grabs all images for a given status_image object-->
+                <img src="{{img.image_file.url}}" alt="not found">
+            {%endfor %}
+        </div>
+        <h4>{{status_image.status_message}}</h4>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

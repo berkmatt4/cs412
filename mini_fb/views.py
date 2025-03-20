@@ -1,6 +1,6 @@
 #views for the mini_fb app
-from django.shortcuts import render
-from django.views.generic import DeleteView, ListView, DetailView, CreateView, UpdateView
+from django.shortcuts import render, redirect
+from django.views.generic import DeleteView, ListView, DetailView, CreateView, UpdateView, View
 from .models import *
 from .forms import *
 import random
@@ -136,3 +136,37 @@ class UpdateStatusMessageView(UpdateView):
         profile = status_message.profile
 
         return reverse('show_profile', kwargs = {'pk': profile.pk})
+    
+class AddFriendView(View):
+    '''a generic view which allows the user to add a friend'''
+
+    def dispatch(self, request, *args, **kwargs):
+        '''method which will associate two profiles into 
+        the Friend relationship'''
+
+        #overriding this method to grab the kwargs of the url
+        pk = self.kwargs['pk']
+        otherPk = self.kwargs['other_pk']
+
+        #use those values to fetch both profiles, then call add_friend
+        profile1 = Profile.objects.get(pk=pk)
+        profile2 = Profile.objects.get(pk=otherPk)
+
+        profile1.add_friend(profile2)
+
+        #had trouble with using reverse, so I used redirect instead to get back to the original profile
+        return redirect('show_profile', pk = pk)
+    
+class ShowFriendSuggestionsView(DetailView):
+    '''A view to show suggestions for friends of a given profile'''
+
+    template_name = "mini_fb/friend_suggestions.html"
+    model = Profile
+
+
+class ShowNewsFeedView(DetailView):
+    '''a view to show the news feed for a given profile
+    shows status messages, images'''
+
+    template_name = "mini_fb/news_feed.html"
+    model = Profile
