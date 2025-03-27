@@ -14,13 +14,18 @@ shows all details for single person-->
         <h2>{{profile.city}}</h2>
         <h3>{{profile.email_address}}</h3>
         <div class = "links-container"> <!--Table for links to create a status message or update the profile-->
-            <a href="{% url 'create_status' profile.pk %}">Create a status message</a>
-            <a href="{%url 'update_profile' profile.pk %}">Update Profile</a>
-            <a href="{%url 'friend_suggestions' profile.pk %}">Friend Suggestions</a>
-            <a href="{%url 'show_news' profile.pk %}">News Feed</a>
+
+            <!--condition to only render these options if this is the profile of the 
+            logged in user-->
+            {% if request.user == profile.user %}
+            <a href="{% url 'create_status'  %}">Create a status message</a>
+            <a href="{%url 'update_profile' %}">Update Profile</a>
+            <a href="{%url 'friend_suggestions'  %}">Friend Suggestions</a>
+            <a href="{%url 'show_news'  %}">News Feed</a>
+            {%endif%}
         </div>
     </div>
-
+    <h3>{{profile.first_name}}'s friends</h3>
     <div class="friends-container">
         {% for friend in profile.get_friends %}     <!--grabbing all of the friends and displayign their info-->
             <div class = "friend-card">
@@ -45,8 +50,11 @@ shows all details for single person-->
             </div>
             <h4>{{status.published}}</h4>
             <div>
+                <!--Similarly to above, only show these elements if the user is logged in-->
+                {% if request.user == profile.user %}
                 <h5><a href="{% url 'delete_status' status.pk %}">Delete</a></h5>
                 <h5><a href="{%url 'update_status' status.pk %}">Update</a></h5>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

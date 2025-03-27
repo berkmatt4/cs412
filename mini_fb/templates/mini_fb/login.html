@@ -1,0 +1,25 @@
+<!--Template which provides login functionality for a user
+Ensures that we are submitting a POST request to the server-->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<h1>Login to Mini Facebook</h1>
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Login">
+
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{request.get.next}}">
+    {% else %}
+    <input type="hidden" name="next" value="{% url 'show_all_profiles' %}">
+    {% endif %}
+</form>
+
+<hr>
+Don't have an account?
+<a href="{% url 'register' %}">Register Here</a>
+
+{% endblock %}

@@ -16,7 +16,7 @@
             <td><a href="{% url 'show_profile' person.pk %}">
                 <img src="{{person.profile_image_url}}" alt="{{person.first_name}}">
             </a></td>
-            <td><a href="{% url 'add_friend' pk=profile.pk other_pk=person.pk %}">Add Friend</a></td>
+            <td><a href="{% url 'add_friend' other_pk=person.pk %}">Add Friend</a></td>
         </tr>
         {% endfor %}
     </table>

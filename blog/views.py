@@ -5,6 +5,9 @@ from .models import Article, Comment
 import random
 from .forms import CreateArticleForm, CreateCommentForm, UpdateArtricleForm
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 class ShowAllView(ListView):
@@ -13,6 +16,16 @@ class ShowAllView(ListView):
     model = Article
     template_name = "blog/show_all.html"
     context_object_name = "articles"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+
+            print(f'ShowAllView.dispatch(): request.user={request.user}')
+
+        else:
+            print(f'ShowAllView.dispatch: not logged in')
+
+        return super().dispatch(request, *args, **kwargs)
 
 class ArticleView(DetailView):
     '''Display one article'''
@@ -35,14 +48,21 @@ class RandomArticleView(DetailView):
         article = random.choice(all_articles)
         return article
     
-class CreateArticleView(CreateView):
+class CreateArticleView(LoginRequiredMixin, CreateView):
     '''display html form, process submission, create new article'''
 
     form_class = CreateArticleForm
     template_name = "blog/create_article_form.html"
 
+    def get_login_url(self):
+        return reverse('login')
+
     def form_valid(self, form):
         print(f'CreateArticleView.form_valid(): {form.cleaned_data}')
+
+        user = self.request.user
+        print(f'CreateArticleView.form_valid(): {user}')
+        form.instance.user = user
 
         return super().form_valid(form)
 
@@ -100,3 +120,15 @@ class DeleteCommentView(DeleteView):
         article = comment.article
 
         return reverse('article', kwargs = {'pk': article.pk})
+    
+class UserRegistrationView(CreateView):
+
+    template_name = 'blog/register.html'
+    form_class= UserCreationForm
+    moddel = User
+
+    def get_success_url(self):
+
+
+
+        return reverse('login')

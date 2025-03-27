@@ -8,8 +8,15 @@
 <div class = "form-container">
 <form action="{% url 'create_profile' %}" method = "POST">
     {% csrf_token %}
+    <h4>Profile Details</h4>
     <table>
         {{form.as_table}}       <!--This will be the CreateProfileForm-->
+    </table>
+    <hr>
+    <br>
+    <h4>Account Details</h4>
+    <table>
+        {{user_creation_form.as_table}}     <!--this will show the UserCreationForm provided by django-->
     </table>
 
     <input type = "submit" value = "Create Profile" class = "button">

@@ -16,7 +16,23 @@
                     a user's profile details-->
                     <li><a href="{% url 'show_all_profiles' %}">Back to Home</a></li>
                     <li><a href="{% url 'create_profile' %}">Create a new Profile</a></li>
+
+                    <!--Conditional rendering based on whether we have a user logged in-->
+                    {% if request.user.is_authenticated %}
+                    <li><form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Logout">
+                    </form></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
                 </ul>
+                <hr>
+                {% if request.user.is_authenticated %}
+                Logged in as: {{request.user}}
+                {% else %}
+                Not logged in.
+                {% endif %}
             </nav>
         </header>
 

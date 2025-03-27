@@ -1,0 +1,11 @@
+<!--template to display the logout to the user
+also provides an option to sign back in-->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<h2>Successfully logged out!</h2>
+<nav><li><a href="{% url 'login' %}">Log back in</a></li></nav>
+
+{% endblock %}

@@ -3,6 +3,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
@@ -14,6 +15,7 @@ class Profile(models.Model):
     city = models.TextField(blank=True)
     email_address = models.TextField(blank=True)
     profile_image_url = models.URLField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)    #ForeignKey object representing a User
 
     def __str__(self):
         '''return a string representation of the user's profile'''
