@@ -73,6 +73,7 @@ class CreateProfileView(CreateView):
         login(self.request, savedUser)
 
         return super().form_valid(form)
+        
 
 class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     '''a view to allow users to upload a new status
@@ -223,3 +224,4 @@ class ShowNewsFeedView(LoginRequiredMixin, DetailView):
     def get_object(self):
         '''return the current user's profile'''
         return Profile.objects.get(user=self.request.user)
+    
