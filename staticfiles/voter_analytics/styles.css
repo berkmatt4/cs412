@@ -1,0 +1,123 @@
+/* styles.css provides styling for the voter anaylitcs page*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: darkblue;
+    color: white;
+    padding: 2vh 5vw;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1vh 0 0;
+    display: flex;
+    gap: 2vw;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 1vh 1vw;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background: royalblue;
+}
+
+.container {
+    max-width: 90vw;
+    margin: 3vh auto;
+    padding: 0 2vw;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2vh 0;
+    background: white;
+    box-shadow: 0 1px 3px gainsboro;
+}
+
+th, td {
+    padding: 1.2vh 1.5vw;
+    text-align: left;
+    border-bottom: 1px solid gainsboro;
+}
+
+th {
+    background: aliceblue;
+}
+
+tr:hover {
+    background: honeydew;
+}
+
+select, input[type="submit"] {
+    padding: 0.8vh 1vw;
+    margin: 0.5vh 0;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background: dodgerblue;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: royalblue;
+}
+
+.pagination {
+    display: flex;
+    gap: 1vw;
+    padding: 0;
+    list-style: none;
+}
+
+.pagination a {
+    color: darkblue;
+    text-decoration: none;
+    padding: 0.8vh 1.2vw;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background: aliceblue;
+}
+
+.graph-container {
+    background: white;
+    padding: 2vh 2vw;
+    margin: 2vh 0;
+    box-shadow: 0 1px 3px gainsboro;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    color: darkblue;
+    margin: 2vh 0;
+}
+
+.row {
+    margin: 3vh 0;
+}
+
+/* Form checkboxes */
+input[type="checkbox"] {
+    margin: 0 1vw 0 0;
+}
+
+label {
+    margin-right: 2vw;
+}

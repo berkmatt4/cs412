@@ -266,7 +266,7 @@ input[type="submit"]:hover, .button:hover {
 
 h1 {
     font-size: 35px;
-    color: white;
+    color: darkslategrey;
     margin-bottom: 24px;
 }
 
@@ -285,4 +285,214 @@ h3 {
 h4 {
     font-size: 18px;
     margin: 16px 0;
+}
+
+.friends-container{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.friend-card{
+    display:flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.friend-img{
+    text-align: center;
+    max-width: 50px;
+}
+
+head{
+    color: black;
+}
+
+header h1{
+    color: white
+}
+
+.status-card img {
+    width: 75px; /* Adjust the size as needed */
+    height: 75px; /* Adjust the size as needed */
+    object-fit: cover;
+    border: 2px solid silver;
+    border-radius: 4px;
+    margin: 8px;
+}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.news-feed-container {
+    width: 80%;
+    margin: 32px auto;
+}
+
+.news-feed-item {
+    background: white;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.news-feed-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.news-feed-item img.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid silver;
+    object-fit: cover;
+}
+
+.news-feed-item .status-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.news-feed-item .status-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid silver;
+    border-radius: 4px;
+}
+
+.friends-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; 
+    margin: 16px 0;
+    justify-content: flex-start;
+}
+
+.friend-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px; 
+}
+
+.friend-card h4 {
+    font-size: 14px; 
+    margin: 8px 0;
+    color: darkslategray;
+}
+
+.friend-card img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid silver;
+    object-fit: cover;
+}
+
+.friend-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.form-container.login-container,
+.form-container.logout-container {
+    max-width: 400px;
+    padding: 32px;
+    margin: 32px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.login-container h1,
+.logout-container h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: darkslategray;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-container form input {
+    padding: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+}
+
+/* Styling for logout form in base.html navigation */
+nav ul li form {
+    display: inline;
+}
+
+nav ul li form input[type="submit"] {
+    background: none;
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 300ms;
+    margin: 0;
+}
+
+nav ul li form input[type="submit"]:hover {
+    background-color: midnightblue;
+}
+
+/* Registration link styling */
+.login-container .registration-link {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.login-container .registration-link a {
+    color: darkslategray;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 300ms;
+}
+
+.login-container .registration-link a:hover {
+    color: midnightblue;
+}
+
+/* Logout page specific styles */
+.logout-container {
+    text-align: center;
+}
+
+.logout-container nav {
+    margin-top: 24px;
+}
+
+.logout-container nav a {
+    display: inline-block;
+    background-color: darkslategray;
+    color: white;
+    padding: 13px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 300ms;
+}
+
+.logout-container nav a:hover {
+    background-color: midnightblue;
 }
