@@ -4,12 +4,12 @@ for records based on filtered details-->
 <h1>Search Form</h1>
 
 <table>
-    <form action="{% url 'voter_list' %}">
+    <form action="{{request.path}}" method ="GET">
         <tr>
             <th>Party Affiliation</th>
             <td><select name="partyA" id="party">
                 <option value="" {% if not selected_party %}selected{% endif %}>--</option>
-                {% for party in parties %}
+                {% for party in parties %}      <!--Display all parties. Make sure if we have a party selected on reload, that it stays selected-->
                 <option value="{{party}}" {% if party == selected_party %}selected{% endif %}>{{party}}</option>
                 {% endfor %}
             </select></td>
@@ -19,7 +19,7 @@ for records based on filtered details-->
             <td>
                 <select name="minYear" id="minYear">
                     <option value="" {% if not selected_min_year %}selected {% endif %}>--</option>
-                    {% for year in birthYears %}
+                    {% for year in birthYears %}    <!--Same as above but for birth years-->
                     <option value="{{year}}" {% if year|stringformat:"s" == selected_min_year %}selected{% endif %}>{{year}}</option>
                     {% endfor %}
                 </select>

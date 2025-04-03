@@ -1,0 +1,32 @@
+<!--A template to display graphs about the voter
+data-->
+
+<!--Includes (in this order) a plot by birth year,
+a pie chart of party affiliation
+and a plot of number of voters in each election-->
+
+{% extends 'voter_analytics/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <div class = "row">
+        {% include "voter_analytics/search.html "%}
+    </div>
+    
+
+    <h1>Voter Analytics Graphs</h1>
+
+    <div class = "graph-container">
+        {{ birth_year_plot|safe }}
+    </div>
+
+    <div class = "graph-container">
+        {{ party_plot | safe }}
+    </div>
+
+    <div class = "graph-container">
+        {{ election_plot|safe }}
+    </div>
+</div>
+{%endblock%}

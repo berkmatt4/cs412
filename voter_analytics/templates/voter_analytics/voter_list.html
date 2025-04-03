@@ -6,7 +6,7 @@
 {% block content %}
 <div class = "containter">
     <div class = "row">
-        {% include "voter_analytics/search.html "%}
+        {% include "voter_analytics/search.html "%} <!--Include the search bar at the top of the page-->
     </div>
     <h1>Voters</h1>
 
@@ -16,7 +16,7 @@
         <ul class = "pagination">
             {% if page_obj.has_previous %}
             <li>
-                <span><a href="?{{request.GET.urlencode}}&page={{ page_obj.previous_page_number }}">Previous</a></span>
+                <span><a href="?{{request.GET.urlencode}}&page={{ page_obj.previous_page_number }}">Previous</a></span> <!--This ensures we keep the results of the search rather than unfiltering results-->
             </li>
             {% endif %}
             <li>

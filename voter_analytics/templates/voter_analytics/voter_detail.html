@@ -5,6 +5,7 @@
 {% block content %}
 <div class = "container">
     <h1>Showing Voter Details for {{v.first_name}} {{v.last_name}}</h1>
+    <!--Table shows all information of a given voter-->
     <table>
         <tr>
             <th>Voter ID</th>
@@ -48,6 +49,7 @@
         </tr>
     </table>
     <h4>Which elections did {{v.first_name}} vote in?</h4>
+    <!--Seperate table for election participation-->
     <table>
         <tr>
             <th>2020 State</th>
