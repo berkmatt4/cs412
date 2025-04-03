@@ -1,0 +1,69 @@
+<!--Template showing all information on a single voter-->
+
+{% extends 'voter_analytics/base.html' %}
+
+{% block content %}
+<div class = "container">
+    <h1>Showing Voter Details for {{v.first_name}} {{v.last_name}}</h1>
+    <table>
+        <tr>
+            <th>Voter ID</th>
+            <td>{{v.vid}}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{v.first_name}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{v.last_name}}</td>
+        </tr>
+        <tr>
+            <th>Home Address</th>
+            <td>{{v.street_number}} {{v.street_name}} {% if v.apartment_number %} APT {{v.apartment_number}} {%endif%}</td>
+        </tr>
+        <tr>
+            <th>Zip Code</th>
+            <td>{{v.zip_code}}</td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td>{{v.dob}}</td>
+        </tr>
+        <tr>
+            <th>Date of Registration</th>
+            <td>{{v.registration_date}}</td>
+        </tr>
+        <tr>
+            <th>Registered Party</th>
+            <td>{{v.party}}</td>
+        </tr>
+        <tr>
+            <th>Precinct Number</th>
+            <td>{{v.precinct}}</td>
+        </tr>
+        <tr>
+            <th>How many elections they voted in</th>
+            <td>{{v.voter_score}}</td>
+        </tr>
+    </table>
+    <h4>Which elections did {{v.first_name}} vote in?</h4>
+    <table>
+        <tr>
+            <th>2020 State</th>
+            <th>2021 Town</th>
+            <th>2021 Primary</th>
+            <th>2022 General</th>
+            <th>2023 Town</th>
+        </tr>
+        <tr>
+            <td>{% if v.v20_state %} Yes {% else %} No {%endif%}</td>
+            <td>{% if v.v21_town %} Yes {% else %} No {%endif%}</td>
+            <td>{% if v.v21_primary %} Yes {% else %} No {%endif%}</td>
+            <td>{% if v.v22_general %} Yes {% else %} No {%endif%}</td>
+            <td>{% if v.v23_town %} Yes {% else %} No {%endif%}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+<!--an HTML template providing a form to search
+for records based on filtered details-->
+
+<h1>Search Form</h1>
+
+<table>
+    <form action="{% url 'voter_list' %}">
+        <tr>
+            <th>Party Affiliation</th>
+            <td><select name="partyA" id="party">
+                <option value="" {% if not selected_party %}selected{% endif %}>--</option>
+                {% for party in parties %}
+                <option value="{{party}}" {% if party == selected_party %}selected{% endif %}>{{party}}</option>
+                {% endfor %}
+            </select></td>
+        </tr>
+        <tr>
+            <th>Minimum Year of Birth</th>
+            <td>
+                <select name="minYear" id="minYear">
+                    <option value="" {% if not selected_min_year %}selected {% endif %}>--</option>
+                    {% for year in birthYears %}
+                    <option value="{{year}}" {% if year|stringformat:"s" == selected_min_year %}selected{% endif %}>{{year}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Maximum Year of Birth</th>
+            <td>
+                <select name="maxYear" id="maxYear">
+                    <option value="" {% if not selected_max_year %}selected{% endif %}>--</option>
+                    {% for year in birthYears %}
+                    <option value="{{year}}" {% if year|stringformat:"s" == selected_max_year %}selected{% endif %}>{{year}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Voter Score</th>
+            <td>
+                <select name="voterScore" id="voterScore">
+                    <option value="" {% if not selected_voter_score%} selected{% endif%}>--</option>
+                    {% for score in voterScores %}
+                    <option value="{{score}}" {% if score|stringformat:"s" == selected_voter_score %}selected{% endif %}>{{score}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Elections Voted In</th>
+            <td>
+                <input type="checkbox" value="v20_state" id="election1" name="v20_state" {% if v20_state_checked %}checked{% endif %}>
+                <label for="election1">2020 State</label>
+                <input type="checkbox" value="v21_town" id="election2" name="v21_town" {% if v21_town_checked %}checked{% endif %}>
+                <label for="election2">2021 Town</label>
+                <input type="checkbox" value="v21_primary" id="election3" name="v21_primary" {% if v21_primary_checked %}checked{% endif %}>
+                <label for="election3">2021 Primary</label>
+                <input type="checkbox" value="v22_general" id="election4" name="v22_general" {% if v22_general_checked %}checked{% endif %}>
+                <label for="election4">2022 General</label>
+                <input type="checkbox" value="v23_town" id="election5" name="v23_town" {% if v23_town_checked %}checked{% endif %}>
+                <label for="election5">2023 Town</label>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit"></td>
+            <td></td>
+        </tr>
+    </form>
+</table>
