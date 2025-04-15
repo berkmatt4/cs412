@@ -1,0 +1,22 @@
+<!--Base page for linking in styles and proving 
+content blocks to render content from other pages
+also includes navigation section-->
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Online Car Dealership</title>
+        <link rel="stylesheet" href="{% static 'project/styles.css'%}">
+    </head>
+    <body>
+        <header>
+            <h1>Online Car Dealership</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">All vehicles</a></li>
+                </ul>
+            </nav>
+        </header>
+    </body>
+</html>

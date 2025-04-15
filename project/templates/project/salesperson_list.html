@@ -1,0 +1,47 @@
+<!--a template to display a list of salespeople working
+at the dealership-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+<div class = "container">
+    <h1>Salespeople</h1>
+
+    <!--providing pagination links for other pages-->
+    <div class = "row">
+        {% if is_paginated %}
+        <ul class = "pagination">
+            {%if page_obj.has_previous %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.previous_page_number}}">Previous</a></span>
+            </li>
+            {% endif %}
+            <li>
+                <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.next_page_number}}">Next</a></span>
+            </li>
+            {%endif%}
+        </ul>
+    </div>
+
+    <!--Table showing all salespeople-->
+    <div class = "row">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Years at Dealership</th>
+            </tr>
+            {% for s in salespeople%}
+            <tr>
+                <td>{{s.first_name}} {{s.last_name}}</td>
+                <td>{{s.years_working}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+{%endblock%}
