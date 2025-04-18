@@ -25,6 +25,7 @@ at the dealership-->
             </li>
             {%endif%}
         </ul>
+        {% endif%}
     </div>
 
     <!--Table showing all salespeople-->
@@ -34,11 +35,12 @@ at the dealership-->
                 <th>Name</th>
                 <th>Years at Dealership</th>
             </tr>
-            {% for s in salespeople%}
+            {% for s in salesperson%}
             <tr>
                 <td>{{s.first_name}} {{s.last_name}}</td>
                 <td>{{s.years_working}}</td>
             </tr>
+            {% endfor %}
         </table>
     </div>
 </div>

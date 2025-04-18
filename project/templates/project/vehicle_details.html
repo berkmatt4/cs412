@@ -1,0 +1,56 @@
+<!--Template to display the details of a single vehicle
+it also will include a button to show your interest in the car
+which salespeople can then see and choose to offer a price-->
+
+{% extends 'project/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class = "container">
+    <h1>All details for {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h1>
+
+    <div class = "row">
+        <div class = "img-container">
+            {% if vehicle.image %}
+            <img src="{{vehicle.image.url}}" alt="">
+            {% else %}
+            <img src="{% static 'project/no_image.png' %}" alt="">
+            {% endif %}
+            <h4>${{vehicle.msrp}}</h4>
+        </div>
+
+        <h3>Details</h3>
+        <table>
+            <tr>
+                <th>Make</th>
+                <td>{{vehicle.make}}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{vehicle.model}}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{vehicle.year}}</td>
+            </tr>
+            <tr>
+                <th>VIN</th>
+                <td>{{vehicle.vin}}</td>
+            </tr>
+            <tr>
+                <th>Body Type</th>
+                <td>{{vehicle.body_type}}</td>
+            </tr>
+            <tr>
+                <th>Engine Size</th>
+                <td>{{vehicle.engine_size}} cylinder</td>
+            </tr>
+            <tr>
+                <th>Average MPG (Highway & City)</th>
+                <td>{{vehicle.mpg}} miles per gallon</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

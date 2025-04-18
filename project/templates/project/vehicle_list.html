@@ -9,7 +9,7 @@ options-->
 <h1>Showing all vehicles</h1>
 <div class = "container">
     <div class = "row">
-        <!--placeholder for search feature-->
+        {% include 'project/search.html'%}
     </div>
 
     <h1>Vehicles</h1>
@@ -32,34 +32,30 @@ options-->
             </li>
             {%endif%}
         </ul>
+        {% endif %}
     </div>
 
     <!--Table of all vehicles-->
     <div class = "row">
         <table>
             <tr>
-                <th>VIN</th>
                 <th>Make</th>
                 <th>Model</th>
                 <th>Year</th>
                 <th>Body Type</th>
-                <th>Number of Cylinders</th>
-                <th>Average MPG</th>
                 <th>Recommended MSRP</th>
             </tr>
 
             {% for v in vehicles %}
             <tr>
-                <td>{{v.vin}}</td>
                 <td>{{v.make}}</td>
                 <td>{{v.model}}</td>
                 <td>{{v.year}}</td>
                 <td>{{v.body_type}}</td>
-                <td>{{v.engine_size}}</td>
-                <td>{{v.mpg}}</td>
                 <td>{{v.msrp}}</td>
+                <td><a href="{% url 'vehicle_details' v.pk%}">See Details</a></td>
             </tr>
-            {{% endfor %}}
+            {% endfor %}
 
         </table>
     </div>

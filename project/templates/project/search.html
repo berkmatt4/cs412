@@ -1,0 +1,56 @@
+<!--an HTML template to provide search and filtering
+will be included in vehicle_list.html-->
+
+<h1>Filter vehicles</h1>
+
+<table>
+    <form action="{{request.path}}" method = "GET">
+        <tr>
+            <th>Vehicle Make</th>
+            <td>
+                <select name="make" id="make">
+                    <option value="" {% if not selected_make%} selected{%endif%}>--</option>
+                    {% for make in makes %}
+                    <option value="{{make}}" {% if make = selected_make %}selected{%endif%}>{{make}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Vehicle Model</th>
+            <td>
+                <select name="model" id="model">
+                    <option value="" {% if not selected_model %} selected {% endif %}>--</option>
+                    {% for model in models %}
+                    <option value="{{model}}" {% if model = selected_model %}selected {%endif%}>{{model}}</option>
+                    {%endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Vehicle Year</th>
+            <td>
+                <select name="year" id="year">
+                    <option value="" {% if not selected_year %}selected {%endif}>--</option>
+                    {% for year in years %}
+                    <option value="{{year}}" {% if year = selected_year %}selected {% endif%}>{{year}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Vehicle Body</th>
+            <td>
+                <select name="body" id="body">
+                    <option value=""{% if not selected_body %}selected {%endif%}>--</option>
+                    {% for body in bodies%}
+                    <option value="{{body}}" {% if body = selected_body %}selected {%endif%}>{{body}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+        </tr>
+    </form>
+</table>

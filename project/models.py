@@ -15,11 +15,42 @@ class Vehicle(models.Model):
     vin = models.TextField(blank = False)
     make = models.TextField(blank = False)
     model = models.TextField(blank = False)
-    year = models.TextField(blank = False)
+    year = models.IntegerField(blank = False)
     body_type = models.TextField(blank = False)
     engine_size = models.IntegerField(blank = False)
     mpg = models.IntegerField(blank = False)
     msrp = models.IntegerField(blank = False)
+    image = models.ImageField(blank = True)
+
+def load_data():
+    '''a function to create model instances from a 
+    csv (Vehicle)'''
+    #delete all entries to prevent duplication
+    Vehicle.objects.all().delete()
+
+    filename = 'C:/Users/user/Documents/cars.csv'
+    f = open(filename)
+    f.readline()    #skip headers
+
+    for line in f:
+        fields = line.split(',')
+
+        try:
+            #create a new instance of the Vehicle using the current fields
+            vehicle = Vehicle(make = fields[0],
+                              model = fields[1],
+                              year = fields[2],
+                              body_type = fields[3],
+                              engine_size = fields[4],
+                              mpg = fields[5],
+                              vin = fields[6],
+                              msrp = fields[7].strip(),     #make sure we don't include newline characters
+                              )
+            vehicle.save() #commit to DB
+
+        except:
+            print(f'Skipped: {fields}') #catch any errors
+    print(f'Done. Created {len(Vehicle.objects.all())} Vehicles')
 
 class Customer(models.Model):
     '''model representing a customer at the car dealership

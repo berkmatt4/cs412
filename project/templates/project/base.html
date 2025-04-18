@@ -15,8 +15,13 @@ also includes navigation section-->
             <nav>
                 <ul>
                     <li><a href="{% url 'home' %}">All vehicles</a></li>
+                    <li><a href="{% url 'salespeople'%}">Meet the team</a></li>
                 </ul>
             </nav>
         </header>
+
+        {%block content%}
+        {%endblock%}
+
     </body>
 </html>
