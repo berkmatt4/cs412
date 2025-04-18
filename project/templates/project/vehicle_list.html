@@ -52,7 +52,7 @@ options-->
                 <td>{{v.model}}</td>
                 <td>{{v.year}}</td>
                 <td>{{v.body_type}}</td>
-                <td>{{v.msrp}}</td>
+                <td>${{v.msrp}}</td>
                 <td><a href="{% url 'vehicle_details' v.pk%}">See Details</a></td>
             </tr>
             {% endfor %}

@@ -1,0 +1,53 @@
+<!--a template to display a list of customers shopping
+at the dealership-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+<div class = "container">
+    <h1>Customers</h1>
+
+    <!--providing pagination links for other pages-->
+    <div class = "row">
+        {% if is_paginated %}
+        <ul class = "pagination">
+            {%if page_obj.has_previous %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.previous_page_number}}">Previous</a></span>
+            </li>
+            {% endif %}
+            <li>
+                <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.next_page_number}}">Next</a></span>
+            </li>
+            {%endif%}
+        </ul>
+        {% endif%}
+    </div>
+
+    <!--Table showing all customers-->
+    <div class = "row">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Vehicle they're interested in</th>
+            </tr>
+            {% for c in customer %}
+            <tr>
+                <td>{{c.first_name}} {{c.last_name}}</td>
+                {% if c.interested_in %}
+                <td>{{c.interested_in.year}} {{c.interested_in.make}} {{c.interested_in.model}}</td>
+                {% else %}
+                <td>None</td>
+                {%endif%}
+            </tr>
+            {% endfor%}
+        </table>
+    </div>
+</div>
+
+
+{%endblock%}

@@ -11,7 +11,7 @@ will be included in vehicle_list.html-->
                 <select name="make" id="make">
                     <option value="" {% if not selected_make%} selected{%endif%}>--</option>
                     {% for make in makes %}
-                    <option value="{{make}}" {% if make = selected_make %}selected{%endif%}>{{make}}</option>
+                    <option value="{{make}}" {% if make|stringformat:"s" == selected_make %}selected{%endif%}>{{make}}</option>
                     {% endfor %}
                 </select>
             </td>
@@ -22,7 +22,7 @@ will be included in vehicle_list.html-->
                 <select name="model" id="model">
                     <option value="" {% if not selected_model %} selected {% endif %}>--</option>
                     {% for model in models %}
-                    <option value="{{model}}" {% if model = selected_model %}selected {%endif%}>{{model}}</option>
+                    <option value="{{model}}" {% if model|stringformat:"s" == selected_model %}selected {%endif%}>{{model}}</option>
                     {%endfor %}
                 </select>
             </td>
@@ -31,9 +31,9 @@ will be included in vehicle_list.html-->
             <th>Vehicle Year</th>
             <td>
                 <select name="year" id="year">
-                    <option value="" {% if not selected_year %}selected {%endif}>--</option>
+                    <option value="" {% if not selected_year %}selected {%endif%}>--</option>
                     {% for year in years %}
-                    <option value="{{year}}" {% if year = selected_year %}selected {% endif%}>{{year}}</option>
+                    <option value="{{year}}" {% if year|stringformat:"s" == selected_year %}selected {% endif%}>{{year}}</option>
                     {% endfor %}
                 </select>
             </td>
@@ -44,13 +44,47 @@ will be included in vehicle_list.html-->
                 <select name="body" id="body">
                     <option value=""{% if not selected_body %}selected {%endif%}>--</option>
                     {% for body in bodies%}
-                    <option value="{{body}}" {% if body = selected_body %}selected {%endif%}>{{body}}</option>
+                    <option value="{{body}}" {% if body|stringformat:"s" == selected_body %}selected {%endif%}>{{body}}</option>
                     {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
-            <th></th>
+            <th>Number of Cylinders</th>
+            <td>
+                <select name="engine" id="engine">
+                    <option value="" {% if not selected_engine %} selected {% endif %}>--</option>
+                    {% for engine in engines %}
+                    <option value="{{engine}}" {% if engine|stringformat:"s" == selected_engine %}selected {%endif%}>{{engine}} cylinders</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Max MSRP</th>
+            <td>
+                <select name="max_msrp" id="max_msrp">
+                    <option value="" {% if not max_msrp %} selected {% endif %}>--</option>
+                    {% for msrp in msrps %}
+                    <option value="{{msrp}}" {% if msrp|stringformat:"s" == max_msrp %} selected {% endif%}>${{msrp}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Minimum MPG</th>
+            <td>
+                <select name="min_mpg" id="min_mpg">
+                    <option value="" {% if not min_mpg %} selected {% endif%}>--</option>
+                    {% for mpg in mpgs %}
+                    <option value="{{mpg}}" {% if mpg|stringformat:"s" == min_mpg %} selected {% endif %}>{{mpg}} miles per gallon</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit"></td>
+            <td></td>
         </tr>
     </form>
 </table>

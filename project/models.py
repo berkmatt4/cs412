@@ -62,7 +62,7 @@ class Customer(models.Model):
     last_name = models.TextField(blank = False)
     credit_score = models.IntegerField(blank = True)
     license_id = models.IntegerField(blank = False)
-    interested_in = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True)
+    interested_in = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True, blank=True)
 
 class Salesperson(models.Model):
     '''a model representing a salesperson at the dealership
