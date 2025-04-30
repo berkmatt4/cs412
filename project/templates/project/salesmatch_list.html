@@ -1,0 +1,28 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+<div class = "container">
+    <h1>Showing all Sales in Progress</h1>
+
+    {% if salesmatches %}
+    <table>
+        <tr>
+            <th>Customer</th>
+            <th>Vehicle</th>
+            <th>Salesperson</th>
+            <th></th>
+        </tr>
+        {% for s in salesmatches %}
+        <tr>
+            <td>{{s.customer.first_name}} {{s.customer.last_name}}</td>
+            <td>{{s.customer.interested_in.year}} {{s.customer.interested_in.make}} {{s.customer.interested_in.model}}</td>
+            <td>{{s.salesperson.first_name}} {{s.salesperson.last_name}}</td>
+            <td><a href="{% url 'salesmatch_detail' s.pk %}"> Show details</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h4>You do not currently have a sale in progress</h4>
+    {%endif%}
+</div>
+{% endblock %}

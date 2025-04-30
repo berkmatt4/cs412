@@ -1,0 +1,42 @@
+<!--Template to show a single customer's details. If they
+do not have a salesmatch then the salesperson viewing it can
+create one-->
+
+ {% extends 'project/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class = "container">
+    <h1>All details for {{customer.first_name}} {{customer.last_name}}</h1>
+
+    <div class = "row">
+        <h3>Details</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{customer.first_name}} {{customer.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Credit Score</th>
+                <td>{{customer.credit_score}}</td>
+            </tr>
+            <tr>
+                <th>Drivers License ID</th>
+                <td>{{customer.license_id}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "img-container">
+        {% if customer.interested_in %}
+        <h4>Interested in {{customer.interested_in.year}} {{customer.interested_in.make}} {{customer.interested_in.model}}</h4>
+        <img {% if customer.interested_in.image %} src="{{customer.interested_in.image.url}}" {%else %} src="{% static 'project/no_image.png' %}" {%endif%}>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if customer.interested_in %}
+        <h4><a href="{% url 'create_offer' customer.pk %}">Make an offer</a></h4>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

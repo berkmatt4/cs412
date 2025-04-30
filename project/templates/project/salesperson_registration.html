@@ -1,0 +1,29 @@
+<!--A view to allow salespeople to register at the dealership-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <h2>Register as a salesperson</h2>
+    <p>Note: You will need to provide a passkey to complete this process.</p>
+
+    <form method = "POST">
+        {% csrf_token %}
+
+        <h4>User Details</h4>
+        <table>
+            {{form.as_table}}
+        </table>
+        <hr>
+        <hr>
+        <h4>Account Details</h4>
+        <table>
+            {{user_creation_form.as_table}}
+        </table>
+
+        <input type="submit" value="Register as salesperson">
+    </form>
+</div>
+
+{% endblock %}

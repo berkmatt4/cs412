@@ -34,11 +34,14 @@ at the dealership-->
             <tr>
                 <th>Name</th>
                 <th>Years at Dealership</th>
+                <th>Rating</th>
             </tr>
             {% for s in salesperson%}
             <tr>
                 <td>{{s.first_name}} {{s.last_name}}</td>
                 <td>{{s.years_working}}</td>
+                <td>{% if s.get_average_rating == -1%} No reviews {% else %} {{s.get_average_rating}} {%endif%}</td>
+                <td><a href="{% url 'salesperson_details' s.pk%}">See Details and Reviews</a></td>
             </tr>
             {% endfor %}
         </table>

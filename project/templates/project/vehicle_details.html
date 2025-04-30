@@ -51,6 +51,20 @@ which salespeople can then see and choose to offer a price-->
             </tr>
         </table>
     </div>
+    <div class = "row">
+        {% if request.user.is_authenticated %}
+            {% if request.user.customer_set.exists %}
+            <form method = "POST" action = "{% url 'express_interest' vehicle.pk %}">
+                {% csrf_token %}
+                <button type="submit">I'm Interested</button>
+            </form>
+            {% else %}
+            <p>Only customers can express interest in a vehicle.</p>
+            {%endif%}
+        {%else%}
+        <p>Please log in to express interest in a vehicle.</p>
+        {%endif %}
+    </div>
 </div>
 
 {% endblock %}

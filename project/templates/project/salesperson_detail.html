@@ -1,0 +1,48 @@
+<!--A template to show the details of a single salesperson
+also displays the reviews for that salesperson-->
+
+{% extends 'project/base.html' %}
+
+{% block content%}
+
+
+<h2>Showing details for {{s.first_name}} {{s.last_name}}</h2>
+
+<div class = 'container'>
+    <div class = 'row'>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{s.first_name}} {{s.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Years at the dealership</th>
+                <td>{{s.years_working}}</td>
+            </tr>
+            <tr>
+                <th>Average Rating</th>
+                <td>{% if s.get_average_rating == -1 %} No ratings yet {% else %} {{s.get_average_rating}} {%endif%}</td>
+            </tr>
+        </table>
+    </div>
+    <h2>Reviews</h2>
+    <div class = "row">
+        <a href="{% url 'salesperson_review' s.pk %}">Write a review</a>
+        {% for r in s.get_reviews %}
+        <div class = "review-container">
+            <h4>From {{r.customer.first_name}} {{r.customer.last_name}}</h4>
+            <h4>Rating: {{r.rating}}</h4>
+            <p>{{r.review_text}}</p>
+        </div>
+        <div class = "update-buttons">
+            {% if request.user == r.customer.user%}
+            <h5><a href="{% url 'update_sales_review' r.pk%}">Update Review</a></h5>
+            <h5><a href="{% url 'delete_sales_review' r.pk%}">Delete Review</a></h5>
+            {% endif%}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

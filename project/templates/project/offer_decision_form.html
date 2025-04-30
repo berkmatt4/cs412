@@ -1,0 +1,31 @@
+<!--A view to display the offer decision form
+allows a customer to accept or reject their sales offer-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <h1>Decide on your sales offer</h1>
+
+    <div class = "row">
+        <h3>Vehicle information</h3>
+        <table>
+            <tr>
+                <td>{{s.customer.interested_in.year}} {{s.customer.interested_in.make}} {{s.customer.interested_in.model}}</td>
+            </tr>
+            <tr>
+                <td>Price: ${{s.price}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <form method = "POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit Decision">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

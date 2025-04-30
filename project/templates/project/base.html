@@ -12,11 +12,32 @@ also includes navigation section-->
     <body>
         <header>
             <h1>Online Car Dealership</h1>
+            {% if request.user.is_authenticated %}
+            <p>Logged in as: {{request.user}} {% if request.user.salesperson_set.exists%}, Salesperson {%else%}, Customer{%endif%}</p>
+            {% else %}
+            <p>Not logged in</p>
+            {%endif%}
             <nav>
                 <ul>
+                    {% if request.user.is_authenticated %}
+                    <li><form action="{% url 'logout' %}" method="POST">
+                        {%csrf_token%}
+                        <input type="submit" value="Logout">
+                    </form></li>
+                    <li><a href="{% url 'delete_account' %}">Delete my account</a></li>
+                    <li><a href="{% url 'salesmatch_list' %}">Sales in progress</a></li>
+                    {% if request.user.salesperson_set.exists %}
+                    <li><a href="{% url 'customers' %}">People Currently Shopping</a></li>
+                    <li><a href="{% url 'sold_vehicles' %}">Vehicles Sold</a></li>
+                    <li><a href="{% url 'add_vehicle' %}">Add new vehicle</a></li>
+                    {% endif %}
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register_customer'%}">Register as a customer</a></li>
+                    <li><a href="{% url 'register_salesperson'%}">Register as a salesperson</a></li>
+                    {% endif%}
                     <li><a href="{% url 'home' %}">All vehicles</a></li>
                     <li><a href="{% url 'salespeople'%}">Meet the team</a></li>
-                    <li><a href="{% url 'customers' %}">People Currently Shopping</a></li>
                 </ul>
             </nav>
         </header>

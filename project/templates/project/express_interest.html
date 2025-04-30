@@ -1,0 +1,14 @@
+<!--A template to confirm that a customers
+interest expression has been successfully submitted-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class = 'container'>
+    <h1>You have successfully declared your interest in:</h1>
+    <h3>{{v.year}} {{v.make}} {{v.model}}</h3>
+    <h4>A representative will offer you a price shortly</h4>
+</div>
+
+{% endblock %}

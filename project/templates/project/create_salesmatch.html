@@ -1,0 +1,44 @@
+<!--A template to create salesmatches, i.e. offer a price to a user-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Create a sales offer</h1>
+    <div class = 'row'>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{customer.first_name}} {{customer.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Credit Score</th>
+                <td>{{customer.credit_score}}</td>
+            </tr>
+            <tr>
+                <th>Drivers License ID</th>
+                <td>{{customer.license_id}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <h4>Interested in:</h4>
+        <table>
+            <tr>
+                <th>{{customer.interested_in.year}} {{customer.interested_in.make}} {{customer.interested_in.model}}</th>
+                <td>MSRP: {{customer.interested_in.msrp}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <h4>Make an offer</h4>
+        <form method = "POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<!--A view to display a form to update a salesmatch object-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <h1>Update Sales Offer</h1>
+    <div class = "row">
+        <form method = "POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

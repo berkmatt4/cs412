@@ -1,0 +1,25 @@
+<!--A template to allow registration of new customers-->
+
+{% extends 'project/base.html' %}
+
+{%block content %}
+
+<div class = "container">
+    <h2>Register as a customer</h2>
+    <form action = "{% url 'register_customer' %}" method = "POST">
+        {% csrf_token %}
+        <h4>User Details</h4>
+        <table>
+            {{form.as_table}}
+        </table>
+        <hr>
+        <hr>
+        <h4>Account Details</h4>
+        <table>
+            {{user_creation_form.as_table}}
+        </table>
+        <input type="submit" value = "Create Account">
+    </form>
+</div>
+
+{% endblock %}

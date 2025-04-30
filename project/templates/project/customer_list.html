@@ -27,6 +27,19 @@ at the dealership-->
         </ul>
         {% endif%}
     </div>
+    <!--providing filtering by customers interested in a vehicle-->
+    <div class = "row">
+        <form action="{{request.path}}" method = "GET">
+            <tr>
+                <th>Show Only Interested</th>
+                <td>
+                    <input type="checkbox" value='show_interested' id = 'show_interested' name='show_interested' {% if show_interested_checked %} checked {% endif%}>
+                    <label for="show_interested">Interested?</label>
+                    <input type="submit">
+                </td>
+            </tr>
+        </form>
+    </div>
 
     <!--Table showing all customers-->
     <div class = "row">
@@ -37,7 +50,7 @@ at the dealership-->
             </tr>
             {% for c in customer %}
             <tr>
-                <td>{{c.first_name}} {{c.last_name}}</td>
+                <td><a href="{% url 'customer_details' c.pk %}">{{c.first_name}} {{c.last_name}}</a></td>
                 {% if c.interested_in %}
                 <td>{{c.interested_in.year}} {{c.interested_in.make}} {{c.interested_in.model}}</td>
                 {% else %}

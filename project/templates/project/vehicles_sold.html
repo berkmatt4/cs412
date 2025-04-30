@@ -1,0 +1,60 @@
+<!--A template to show salespeople the list of all vehicles that
+have been sold at the dealership-->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<h1>Showing Sold vehicles</h1>
+<div class = "container">
+
+    <!--providing pagination links for other pages-->
+    <div class = "row">
+        {% if is_paginated %}
+        <ul class = "pagination">
+            {%if page_obj.has_previous %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.previous_page_number}}">Previous</a></span>
+            </li>
+            {% endif %}
+            <li>
+                <span>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}.</span>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <span><a href="?{{request.GET.urlencode}}&page={{page_obj.next_page_number}}">Next</a></span>
+            </li>
+            {%endif%}
+        </ul>
+        {% endif %}
+    </div>
+
+    <!--Table of sold vehicles-->
+    <div class = "row">
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Body Type</th>
+                <th>Recommended MSRP</th>
+                <th>Image</th>
+            </tr>
+
+            {% for v in vehicles %}
+            <tr>
+                <td>{{v.make}}</td>
+                <td>{{v.model}}</td>
+                <td>{{v.year}}</td>
+                <td>{{v.body_type}}</td>
+                <td>${{v.msrp}}</td>
+                <td><img src="{{v.image.url}}" alt=""></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

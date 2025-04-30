@@ -1,0 +1,17 @@
+<!--A template to display the vehicle creation form
+allows salespeople to define all attributes-->
+
+{% extends 'project/base.html'%}
+
+{% block content %}
+
+<div class = "container">
+    <h2>Add new vehicle to the lot</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form.as_table}}
+        <input type="submit">
+    </form>
+</div>
+
+{% endblock %}

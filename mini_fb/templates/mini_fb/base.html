@@ -22,6 +22,7 @@
                         {% csrf_token %}
                         <input type="submit" value="Logout">
                     </form></li>
+                    <li><a href="{% url 'salesmatch_details' %}">Sales in progress</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'create_profile' %}">Create a new Profile</a></li>

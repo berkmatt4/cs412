@@ -1,0 +1,93 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <h1>Sales offer details</h1>
+
+    <div class = "row">
+        <h3>Customer info</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{salesmatch.customer.first_name}} {{salesmatch.customer.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Credit Score</th>
+                <td>{{salesmatch.customer.credit_score}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <h3>Salesperson info</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{salesmatch.salesperson.first_name}} {{salesmatch.salesperson.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Years working</th>
+                <td>{{salesmatch.salesperson.years_working}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <h3>Vehicle Info</h3>
+        <table>
+            <tr>
+                <th>Year</th>
+                <td>{{salesmatch.customer.interested_in.year}}</td>
+            </tr>
+            <tr>
+                <th>Make</th>
+                <td>{{salesmatch.customer.interested_in.make}}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{salesmatch.customer.interested_in.model}}</td>
+            </tr>
+            <tr>
+                <th>MSRP</th>
+                <td>${{salesmatch.customer.interested_in.msrp}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <h3>Offer Details</h3>
+        <table>
+            <tr>
+                <th>Offered Vehicle Price</th>
+                <td>${{salesmatch.price}}</td>
+            </tr>
+            <tr>
+                <th>Fees</th>
+                <td>{{fees}}</td>
+            </tr>
+            <tr>
+                <th>Total Price (including estimated 5% sales tax)</th>
+                <td>${{total_price}}</td>
+            </tr>
+            <tr>
+                <th>APR</th>
+                <td>{{interest}}%</td>
+            </tr>
+            <tr>
+                <th>Estimated monthly payment (60 month loan)</th>
+                <td>${{first_payment}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class = "row">
+        <nav>
+        {% if request.user.is_authenticated %}
+        {% if request.user.salesperson_set.exists %}
+            <li><a href="{% url 'update_salesmatch' salesmatch.pk %}">Update Price</a></li>
+        {% else %}
+            <li><a href="{% url 'offer_decision' salesmatch.pk %}">Make a decision</a></li>
+        {%endif%}
+        {%endif%}
+        </nav>
+    </div>
+</div>
+
+{% endblock %}

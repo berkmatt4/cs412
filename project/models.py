@@ -4,6 +4,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Vehicle(models.Model):
     mpg = models.IntegerField(blank = False)
     msrp = models.IntegerField(blank = False)
     image = models.ImageField(blank = True)
+    isSold = models.BooleanField(default = False)
 
 def load_data():
     '''a function to create model instances from a 
@@ -52,6 +54,25 @@ def load_data():
             print(f'Skipped: {fields}') #catch any errors
     print(f'Done. Created {len(Vehicle.objects.all())} Vehicles')
 
+def load_images():
+    '''a function to assign images to vehicles
+    this is only used for vehicles created from the csv'''
+
+    makes = Vehicle.objects.values_list('make', flat = True).distinct()
+
+    for make in makes:
+        image_path = f'C:/Users/user/django/cs412/media/{make.lower()}.jpg'
+
+        vehicles = Vehicle.objects.filter(make=make)
+        updated = vehicles.update(image=image_path)
+
+        print(f'Updated {updated} vehicles of make {make} with image {image_path}')
+    
+    vehicles_no_image = Vehicle.objects.filter(image='').count()
+    print(f'Done. {vehicles_no_image} vehicles could not get an image')
+
+
+
 class Customer(models.Model):
     '''model representing a customer at the car dealership
     includes full name, drivers license id, credit score,
@@ -63,6 +84,18 @@ class Customer(models.Model):
     credit_score = models.IntegerField(blank = True)
     license_id = models.IntegerField(blank = False)
     interested_in = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+
+    def get_sales_match(self):
+        '''return the salesmatch associated with this customer'''
+        try:
+            return SalesMatch.objects.get(customer=self)
+        except:
+            return None
+        
+    def get_absolute_url(self):
+        '''method to direct newly registered users to their page'''
+        return reverse('customer_details', kwargs = {'pk': self.pk})
 
 class Salesperson(models.Model):
     '''a model representing a salesperson at the dealership
@@ -71,6 +104,35 @@ class Salesperson(models.Model):
     first_name = models.TextField(blank = False)
     last_name = models.TextField(blank = False)
     years_working = models.IntegerField(blank = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        '''method to direct the salesperson to the team list after creation'''
+        return reverse('salesperson_detail', kwargs={'pk': self.pk})
+    
+    def get_reviews(self):
+        '''accessor to return the reviews of a specific salesperson'''
+
+        review = SalespersonReview.objects.filter(salesperson = self)
+
+        return review
+    
+    def get_average_rating(self):
+        '''a function to return the average review rating of a salesperson'''
+
+        reviews = SalespersonReview.objects.filter(salesperson = self)
+
+        if reviews:
+            rating = 0
+
+            for r in reviews:
+                rating += r.rating
+            
+            rating = rating / len(reviews)
+
+            return round(rating, 1)
+        else:
+            return -1
 
 class SalesMatch(models.Model):
     '''a model representing a sale in progress
@@ -89,7 +151,10 @@ class SalespersonReview(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     salesperson = models.ForeignKey(Salesperson, on_delete=models.CASCADE)
-    rating = models.IntegerField(blank = False)
+    rating = models.FloatField(blank = False, validators=[
+        MaxValueValidator(5.0),
+        MinValueValidator(1.0)
+    ])
     review_text = models.TextField(blank = False)
 
 class VehicleReview(models.Model):
@@ -100,6 +165,9 @@ class VehicleReview(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.DO_NOTHING)
-    rating = models.IntegerField(blank = False)
+    rating = models.FloatField(blank = False, validators=[
+        MaxValueValidator(5.0),
+        MinValueValidator(1.0)
+    ])
     review_text = models.TextField(blank = False)
     car_image = models.ImageField(blank = True)     #image will be optional
