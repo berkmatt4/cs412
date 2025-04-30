@@ -61,7 +61,7 @@ def load_images():
     makes = Vehicle.objects.values_list('make', flat = True).distinct()
 
     for make in makes:
-        image_path = f'C:/Users/user/django/cs412/media/{make.lower()}.jpg'
+        image_path = f'vehicles/{make.lower()}.jpg'
 
         vehicles = Vehicle.objects.filter(make=make)
         updated = vehicles.update(image=image_path)
