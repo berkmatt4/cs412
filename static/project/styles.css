@@ -4,14 +4,13 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     background-color: whitesmoke;
     color: darkslategray;
-    line-height: 1.6;
+    line-height: 1.6;   /*space out the text some more*/
     padding: 20px;
 }
 
@@ -22,7 +21,7 @@ header {
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 5px darkgray;
+    box-shadow: 0 2px 5px darkgray; /*adding a shadow to the header for some depth*/
 }
 
 header h1 {
@@ -44,7 +43,7 @@ nav ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    gap: 10px;
+    gap: 10px;      /*spacing between nav elements*/
 }
 
 nav ul li {
@@ -61,7 +60,7 @@ nav a, nav form input[type="submit"] {
     border-radius: 4px;
     font-size: 14px;
     border: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s;  /*.3 second transition from normal to hover mode*/
 }
 
 nav a:hover, nav form input[type="submit"]:hover {
@@ -75,7 +74,7 @@ nav a:hover, nav form input[type="submit"]:hover {
     padding: 20px;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 2px 5px darkgray;
+    box-shadow: 0 2px 5px darkgray; /*adding shadows to containers to give some depth*/
 }
 
 .row {
@@ -109,7 +108,7 @@ h4 {
 /*table styling*/
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse;  /*remove in-row borders*/
     margin-bottom: 15px;
 }
 
@@ -138,7 +137,7 @@ table th {
     height: auto;
     max-height: 300px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px darkgray;
+    box-shadow: 0 2px 5px darkgray; /*use a shadow for images too*/
 }
 
 /*styling for inputs and forms*/
@@ -162,7 +161,7 @@ input[type="submit"], button {
     border: none;
     border-radius: 4px;
     font-size: 14px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /*.3 second transition from normal to hover mode*/
 }
 
 /*hover effect for submit*/
@@ -189,7 +188,7 @@ button:hover {
     color: white;
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /*same as above transitions*/
 }
 
 .pagination a:hover {
