@@ -30,7 +30,9 @@ also displays the reviews for that salesperson-->
     (customers) to leave reviews and update and delete their own reviews-->
     <h2>Reviews</h2>
     <div class = "row">
+        {% if request.user.customer_set.exists %}
         <a href="{% url 'salesperson_review' s.pk %}">Write a review</a>
+        {% endif%}
         {% for r in s.get_reviews %}
         <div class = "review-container">
             <h4>From {{r.customer.first_name}} {{r.customer.last_name}}</h4>

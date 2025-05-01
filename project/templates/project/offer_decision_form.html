@@ -25,6 +25,9 @@ allows a customer to accept or reject their sales offer-->
             {{form.as_p}}   <!--Display the radio buttons to accept or reject the offer-->
             <input type="submit" value="Submit Decision">
         </form>
+        <form action="{% url 'salesmatch_detail' s.pk %}">
+            <input type="submit" value = "Cancel">
+        </form>
     </div>
 </div>
 

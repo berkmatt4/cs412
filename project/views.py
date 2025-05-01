@@ -421,6 +421,7 @@ class UpdateSalesmatchView(SalespersonRequiredMixin, UpdateView):
     model = SalesMatch
     form_class = UpdateSalesmatchForm
     template_name = 'project/update_salesmatch_form.html'
+    context_object_name = 'salesmatch'
 
     def get_success_url(self):
         '''overriding to display salesmatch after update'''

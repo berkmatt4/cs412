@@ -115,7 +115,7 @@ class Salesperson(models.Model):
 
     def get_absolute_url(self):
         '''method to direct the salesperson to the team list after creation'''
-        return reverse('salesperson_detail', kwargs={'pk': self.pk})    #after creation, display the user
+        return reverse('salesperson_details', kwargs={'pk': self.pk})    #after creation, display the user
     
     def get_reviews(self):
         '''accessor to return the reviews of a specific salesperson'''

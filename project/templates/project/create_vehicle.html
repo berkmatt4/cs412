@@ -7,11 +7,16 @@ allows salespeople to define all attributes-->
 
 <div class = "container">
     <h2>Add new vehicle to the lot</h2>
+    <div class = "row">
     <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
         {{form.as_table}}       <!--Display the vehicle adding form as a table-->
         <input type="submit">
     </form>
+    <form action="{% url 'home' %}">
+        <input type="submit" value="Cancel">
+    </form>
+    </div>
 </div>
 
 {% endblock %}

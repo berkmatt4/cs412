@@ -40,6 +40,9 @@
             {{form}}
             <input type="submit">
         </form>
+        <form action="{% url 'customer_details' customer.pk%}">
+            <input type="submit" value="Cancel">
+        </form>
     </div>
 </div>
 

@@ -12,6 +12,9 @@
             {{form.as_table}}        <!--Display the update form as a table-->
             <input type="submit">
         </form>
+        <form action="{% url 'salesmatch_detail' salesmatch.pk%}">
+            <input type="submit" value="Cancel">
+        </form>
     </div>
 </div>
 
