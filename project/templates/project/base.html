@@ -13,12 +13,13 @@ also includes navigation section-->
         <header>
             <h1>Online Car Dealership</h1>
             {% if request.user.is_authenticated %}
-            <p>Logged in as: {{request.user}} {% if request.user.salesperson_set.exists%}, Salesperson {%else%}, Customer{%endif%}</p>
+            <p>Logged in as: {{request.user}}, {% if request.user.salesperson_set.exists%} Salesperson {%else%}, Customer{%endif%}</p>
             {% else %}
             <p>Not logged in</p>
             {%endif%}
             <nav>
                 <ul>
+                    <!--Links for users who are currently logged in-->
                     {% if request.user.is_authenticated %}
                     <li><form action="{% url 'logout' %}" method="POST">
                         {%csrf_token%}
@@ -26,18 +27,25 @@ also includes navigation section-->
                     </form></li>
                     <li><a href="{% url 'delete_account' %}">Delete my account</a></li>
                     <li><a href="{% url 'salesmatch_list' %}">Sales in progress</a></li>
+                    <!--Links only for salespeople-->
                     {% if request.user.salesperson_set.exists %}
                     <li><a href="{% url 'customers' %}">People Currently Shopping</a></li>
                     <li><a href="{% url 'sold_vehicles' %}">Vehicles Sold</a></li>
                     <li><a href="{% url 'add_vehicle' %}">Add new vehicle</a></li>
                     {% endif %}
+                    <!--Links for customers-->
+                    {% if request.user.customer_set.exists %}
+                    <li><a href="{% url 'customer_details' user.customer_set.first.pk%}">My Account</a></li>
+                    {% endif %}
                     {% else %}
+                    <!--Links that anyone can use-->
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'register_customer'%}">Register as a customer</a></li>
                     <li><a href="{% url 'register_salesperson'%}">Register as a salesperson</a></li>
                     {% endif%}
-                    <li><a href="{% url 'home' %}">All vehicles</a></li>
+                    <li><a href="{% url 'vehicle_list' %}">All vehicles</a></li>
                     <li><a href="{% url 'salespeople'%}">Meet the team</a></li>
+                    <li><a href="{% url 'home' %}">Home and About</a></li>
                 </ul>
             </nav>
         </header>

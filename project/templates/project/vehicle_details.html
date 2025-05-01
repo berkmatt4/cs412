@@ -9,7 +9,7 @@ which salespeople can then see and choose to offer a price-->
 <div class = "container">
     <h1>All details for {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h1>
 
-    <div class = "row">
+    <div class = "row">     <!--Showing the vehicle's image-->
         <div class = "img-container">
             {% if vehicle.image %}
             <img src="{{vehicle.image.url}}" alt="">
@@ -20,6 +20,7 @@ which salespeople can then see and choose to offer a price-->
         </div>
 
         <h3>Details</h3>
+        <!--Table showing all details relating to the vehicle-->
         <table>
             <tr>
                 <th>Make</th>
@@ -51,6 +52,8 @@ which salespeople can then see and choose to offer a price-->
             </tr>
         </table>
     </div>
+    <!--Provide customers with a link to express their interest, and provide unauthenticated
+    users with a link to login-->
     <div class = "row">
         {% if request.user.is_authenticated %}
             {% if request.user.customer_set.exists %}
@@ -62,7 +65,7 @@ which salespeople can then see and choose to offer a price-->
             <p>Only customers can express interest in a vehicle.</p>
             {%endif%}
         {%else%}
-        <p>Please log in to express interest in a vehicle.</p>
+        <p>Please <a href="{% url 'login'%}?next={{request.path}}">login</a> to express interest in a vehicle.</p>
         {%endif %}
     </div>
 </div>

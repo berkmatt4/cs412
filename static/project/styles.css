@@ -1,0 +1,211 @@
+/*styles.css provides styling for the online car dealership project*/
+
+/*styling for all pages*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    color: darkslategray;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/*styling for the header sections*/
+header {
+    background-color: steelblue;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px darkgray;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/*styles for the navigation section*/
+nav {
+    margin: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 10px;
+}
+
+nav ul li {
+    margin-right: 10px;
+}
+
+/*this specifically tries to make the logout button look like another link*/
+nav a, nav form input[type="submit"] {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: navy;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+nav a:hover, nav form input[type="submit"]:hover {
+    background-color: royalblue;
+}
+
+/*styling for containers and overall page layouts*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px darkgray;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/*heading specific styling*/
+h1, h2, h3, h4 {
+    color: navy;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+/*table styling*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+table th, table td {
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+}
+
+table th {
+    background-color: aliceblue;
+    font-weight: bold;
+    color: navy;
+}
+
+/*image area formatting*/
+.img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px darkgray;
+}
+
+/*styling for inputs and forms*/
+form {
+    margin-bottom: 20px;
+}
+/*ensuring that all input types have similar styling*/
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="submit"], button {
+    padding: 10px 15px;
+    background-color: navy;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+/*hover effect for submit*/
+input[type="submit"]:hover,
+button:hover {
+    background-color: royalblue;
+}
+
+/*styling for all things pagination*/
+.pagination {
+    display: flex;
+    list-style: none;
+    margin: 20px 0;
+}
+
+.pagination li {
+    margin-right: 10px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: navy;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: royalblue;
+}
+
+/*vehicle list image styling*/
+.vehicles img {
+    max-width: 150px;
+    max-height: 100px;
+}
+
+/*link styling*/
+a {
+    color: navy;
+    text-decoration: none;
+}

@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 #a file to provide forms for the project app
-#so far, it allows the salespeople to create salesmatch objects
+#All create and update actions will have forms stored here
 
 class CreateSalesmatchForm(forms.ModelForm):
     '''A form which allows the salesperson to offer a price to an
@@ -12,7 +12,7 @@ class CreateSalesmatchForm(forms.ModelForm):
         model = SalesMatch
         fields = ['price']
         help_texts = {
-            'price': "Enter a price in dollars",
+            'price': "Enter a price in dollars",        #adding help text to describe the field
         }
 
 class CreateSalespersonReviewForm(forms.ModelForm):
@@ -22,7 +22,7 @@ class CreateSalespersonReviewForm(forms.ModelForm):
         '''associate our form with a model in the DB'''
         model = SalespersonReview
 
-        fields = ['rating', 'review_text']
+        fields = ['rating', 'review_text']  #form should allow input of rating and review
 
 class UpdateSalesmatchForm(forms.ModelForm):
     '''a form for updating the price of a salesmatch'''
@@ -35,7 +35,7 @@ class UpdateSalesmatchForm(forms.ModelForm):
 
         fields = ['price']
         help_texts = {
-            'price': 'Enter an updated price'
+            'price': 'Enter an updated price'   #describing the field
         }
 
 class OfferDecisionForm(forms.ModelForm):
@@ -44,7 +44,7 @@ class OfferDecisionForm(forms.ModelForm):
     
     decisions = [
         ('accept', 'Accept Offer'),
-        ('reject', 'Reject Offer and continue searching')
+        ('reject', 'Reject Offer and continue searching')   #create decisions as radio buttons for this form
     ]
     decision = forms.ChoiceField(choices = decisions, widget = forms.RadioSelect)
 
@@ -60,10 +60,11 @@ class CreateCustomerForm(forms.ModelForm):
 
         model = Customer
 
-        fields = ['first_name', 'last_name', 'credit_score', 'license_id']
+        fields = ['first_name', 'last_name', 'credit_score', 'license_id'] #user must input all customer info
 
 class CreateSalespersonForm(forms.ModelForm):
     '''a form to create a new salesperson'''
+    #passkey allows us to ensure that anyone registering as a salesperson should actually be doing so
     passkey = forms.CharField(max_length = 50, required = True, widget = forms.PasswordInput)
 
     class Meta:

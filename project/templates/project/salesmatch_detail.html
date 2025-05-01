@@ -1,10 +1,11 @@
+<!--Template to show all details relating to a SalesMatch object-->
 {% extends 'project/base.html' %}
 
 {% block content %}
 
 <div class = "container">
     <h1>Sales offer details</h1>
-
+    <!--First display the customer info-->
     <div class = "row">
         <h3>Customer info</h3>
         <table>
@@ -18,6 +19,7 @@
             </tr>
         </table>
     </div>
+    <!--Now show the salesperson info-->
     <div class = "row">
         <h3>Salesperson info</h3>
         <table>
@@ -31,6 +33,7 @@
             </tr>
         </table>
     </div>
+    <!--Now the vehicle info-->
     <div class = "row">
         <h3>Vehicle Info</h3>
         <table>
@@ -52,6 +55,8 @@
             </tr>
         </table>
     </div>
+    <!--Finally, show all pricing info including fees, taxes, and a monthly payment estimate
+    using an interest rate given by the customer's credit score-->
     <div class = "row">
         <h3>Offer Details</h3>
         <table>
@@ -77,6 +82,7 @@
             </tr>
         </table>
     </div>
+    <!--Allow salespeople to edit the pricing, and allow customers to decide on the offer-->
     <div class = "row">
         <nav>
         {% if request.user.is_authenticated %}

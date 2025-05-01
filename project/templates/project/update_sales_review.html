@@ -11,7 +11,7 @@
         <form action="{% url 'update_sales_review' review.pk%}" method = "POST">
             {%csrf_token%}
             <table>
-                {{form.as_table}}
+                {{form.as_table}}       <!--Display the form to update a review as a table. Also allow users to cancel-->
             </table>
             <input type="submit">
         </form>

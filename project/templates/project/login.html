@@ -12,12 +12,11 @@ Ensures that we are submitting a POST request to the server-->
     <input type="submit" value="Login">
 
     {% if request.GET.next %}
-    <input type="hidden" name="next" value="{{request.get.next}}">
+    <input type="hidden" name="next" value="{{request.GET.next}}">  <!--Make sure we redirect neatly back to the page the user came from-->
     {% else %}
     <input type="hidden" name="next" value="{% url 'vehicle_list' %}">
     {% endif %}
 </form>
 
-<hr>
 
 {% endblock %}

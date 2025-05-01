@@ -5,7 +5,7 @@ create one-->
  {% extends 'project/base.html' %}
 {% load static %}
 {% block content %}
-
+<!--Show the details of the customer-->
 <div class = "container">
     <h1>All details for {{customer.first_name}} {{customer.last_name}}</h1>
 
@@ -26,15 +26,19 @@ create one-->
             </tr>
         </table>
     </div>
+    <!--Show information about the vehicle the customer is interested in, if they are interested in one-->
     <div class = "img-container">
         {% if customer.interested_in %}
         <h4>Interested in {{customer.interested_in.year}} {{customer.interested_in.make}} {{customer.interested_in.model}}</h4>
         <img {% if customer.interested_in.image %} src="{{customer.interested_in.image.url}}" {%else %} src="{% static 'project/no_image.png' %}" {%endif%}>
         {% endif %}
     </div>
+    <!--Link for salespeople to be able to create the offer (SalesMatch) for the customer-->
     <div class="row">
         {% if customer.interested_in %}
+        {% if request.user.salesperson_set.exists %}
         <h4><a href="{% url 'create_offer' customer.pk %}">Make an offer</a></h4>
+        {% endif %}
         {% endif %}
     </div>
 </div>

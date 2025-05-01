@@ -10,6 +10,7 @@ also displays the reviews for that salesperson-->
 
 <div class = 'container'>
     <div class = 'row'>
+        <!--Table to display all salesperson info-->
         <table>
             <tr>
                 <th>Name</th>
@@ -25,6 +26,8 @@ also displays the reviews for that salesperson-->
             </tr>
         </table>
     </div>
+    <!--An area to hold reviews of the salesperson. It also provides links to authenticated users
+    (customers) to leave reviews and update and delete their own reviews-->
     <h2>Reviews</h2>
     <div class = "row">
         <a href="{% url 'salesperson_review' s.pk %}">Write a review</a>
@@ -40,6 +43,7 @@ also displays the reviews for that salesperson-->
             <h5><a href="{% url 'delete_sales_review' r.pk%}">Delete Review</a></h5>
             {% endif%}
         </div>
+        <hr>
         {% endfor %}
     </div>
 </div>

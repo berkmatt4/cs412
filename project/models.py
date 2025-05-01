@@ -1,6 +1,6 @@
 #models for the final project (car dealership)
 #contains definitions for Vehicles, Customers, Salespeople
-#SalesMatches (pending sales), SalesReviews, CarReviews
+#SalesMatches (pending sales), SalesReviews
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -11,7 +11,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Vehicle(models.Model):
     '''model representing a vehicle at the car dealership
     includes VIN, make, model, year, body type (SUV, sedan, etc)
-    , engine size (num cylinders), average MPG, and msrp'''
+    , engine size (num cylinders), average MPG, and msrp and a field for 
+    determining if the vehicle is sold'''
 
     vin = models.TextField(blank = False)
     make = models.TextField(blank = False)
@@ -22,11 +23,13 @@ class Vehicle(models.Model):
     mpg = models.IntegerField(blank = False)
     msrp = models.IntegerField(blank = False)
     image = models.ImageField(blank = True)
-    isSold = models.BooleanField(default = False)
+    isSold = models.BooleanField(default = False)   #set a default value for new vehicles
 
 def load_data():
     '''a function to create model instances from a 
-    csv (Vehicle)'''
+    csv (Vehicle)
+    The CSV used included 17 makes, each having multiple objects of the
+    same vehicle to save time while creating a populous database'''
     #delete all entries to prevent duplication
     Vehicle.objects.all().delete()
 
@@ -56,18 +59,22 @@ def load_data():
 
 def load_images():
     '''a function to assign images to vehicles
-    this is only used for vehicles created from the csv'''
+    this is only used for vehicles created from the csv
+    Since each initial vehicle would be duplicate vehicles of the same make,
+    we can assign this based solely on the vehicles make'''
 
-    makes = Vehicle.objects.values_list('make', flat = True).distinct()
+    makes = Vehicle.objects.values_list('make', flat = True).distinct() #grab the list of all vehicle makes
 
     for make in makes:
-        image_path = f'vehicles/{make.lower()}.jpg'
-
+        image_path = f'vehicles/{make.lower()}.jpg'     #all images used were just <make>.jpg
+        
+        #grab all vehicles of the current make, and update their images
         vehicles = Vehicle.objects.filter(make=make)
         updated = vehicles.update(image=image_path)
 
         print(f'Updated {updated} vehicles of make {make} with image {image_path}')
     
+    #see how many vehicles have no images
     vehicles_no_image = Vehicle.objects.filter(image='').count()
     print(f'Done. {vehicles_no_image} vehicles could not get an image')
 
@@ -89,13 +96,13 @@ class Customer(models.Model):
     def get_sales_match(self):
         '''return the salesmatch associated with this customer'''
         try:
-            return SalesMatch.objects.get(customer=self)
+            return SalesMatch.objects.get(customer=self)    #return salesmatches relating to this customer
         except:
             return None
         
     def get_absolute_url(self):
         '''method to direct newly registered users to their page'''
-        return reverse('customer_details', kwargs = {'pk': self.pk})
+        return reverse('customer_details', kwargs = {'pk': self.pk})    #after creation, display current user
 
 class Salesperson(models.Model):
     '''a model representing a salesperson at the dealership
@@ -108,12 +115,12 @@ class Salesperson(models.Model):
 
     def get_absolute_url(self):
         '''method to direct the salesperson to the team list after creation'''
-        return reverse('salesperson_detail', kwargs={'pk': self.pk})
+        return reverse('salesperson_detail', kwargs={'pk': self.pk})    #after creation, display the user
     
     def get_reviews(self):
         '''accessor to return the reviews of a specific salesperson'''
 
-        review = SalespersonReview.objects.filter(salesperson = self)
+        review = SalespersonReview.objects.filter(salesperson = self)      #grab all reviews relating to this salesperson
 
         return review
     
@@ -125,6 +132,7 @@ class Salesperson(models.Model):
         if reviews:
             rating = 0
 
+        #loop through all reviews, then average them out
             for r in reviews:
                 rating += r.rating
             
@@ -132,7 +140,7 @@ class Salesperson(models.Model):
 
             return round(rating, 1)
         else:
-            return -1
+            return -1       #return -1 if there are no reviews, so we can determine this later in views
 
 class SalesMatch(models.Model):
     '''a model representing a sale in progress
@@ -151,23 +159,8 @@ class SalespersonReview(models.Model):
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     salesperson = models.ForeignKey(Salesperson, on_delete=models.CASCADE)
-    rating = models.FloatField(blank = False, validators=[
+    rating = models.FloatField(blank = False, validators=[      #including some validators to ensure that the rating is from 1-5 inclusive
         MaxValueValidator(5.0),
         MinValueValidator(1.0)
     ])
     review_text = models.TextField(blank = False)
-
-class VehicleReview(models.Model):
-    '''a model to hold reviews of a specific car. includes
-    a foreign key to the car being reviewed, customer submitting review,
-    also includes a rating as an integer, some text for the review body
-    and the ability to put an image of the car'''
-
-    customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.DO_NOTHING)
-    rating = models.FloatField(blank = False, validators=[
-        MaxValueValidator(5.0),
-        MinValueValidator(1.0)
-    ])
-    review_text = models.TextField(blank = False)
-    car_image = models.ImageField(blank = True)     #image will be optional

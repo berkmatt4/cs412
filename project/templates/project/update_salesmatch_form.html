@@ -9,7 +9,7 @@
     <div class = "row">
         <form method = "POST">
             {% csrf_token %}
-            {{form}}
+            {{form.as_table}}        <!--Display the update form as a table-->
             <input type="submit">
         </form>
     </div>

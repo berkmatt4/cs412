@@ -10,13 +10,13 @@
         {% csrf_token %}
         <h4>User Details</h4>
         <table>
-            {{form.as_table}}
+            {{form.as_table}}   <!--Show the form specific to the Customer model-->
         </table>
         <hr>
         <hr>
         <h4>Account Details</h4>
         <table>
-            {{user_creation_form.as_table}}
+            {{user_creation_form.as_table}} <!--Show the form for a django User object-->
         </table>
         <input type="submit" value = "Create Account">
     </form>

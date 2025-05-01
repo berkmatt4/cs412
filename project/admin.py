@@ -7,6 +7,6 @@ admin.site.register(Salesperson)
 admin.site.register(Customer)
 admin.site.register(SalesMatch)
 admin.site.register(SalespersonReview)
-admin.site.register(VehicleReview)
+
 
 #registering all of our models to use in the admin tool

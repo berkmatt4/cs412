@@ -9,10 +9,10 @@
     <p>{{r.review_text}}</p>
     <form method = "POST">
         {%csrf_token%}
-        <input type="submit" value="Delete">
+        <input type="submit" value="Delete">        <!--User can delete only their reviews-->
     </form>
     <form action="{% url 'salesperson_details' r.salesperson.pk%}" method = "GET">
-        {%csrf_token%}
+        {%csrf_token%}  
         <input type="submit" value="Cancel">
     </form>
 </div>

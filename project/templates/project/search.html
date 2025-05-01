@@ -8,6 +8,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Vehicle Make</th>
             <td>
+                <!--Filtering by make-->
                 <select name="make" id="make">
                     <option value="" {% if not selected_make%} selected{%endif%}>--</option>
                     {% for make in makes %}
@@ -19,6 +20,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Vehicle Model</th>
             <td>
+                <!--Filtering by model-->
                 <select name="model" id="model">
                     <option value="" {% if not selected_model %} selected {% endif %}>--</option>
                     {% for model in models %}
@@ -29,6 +31,7 @@ will be included in vehicle_list.html-->
         </tr>
         <tr>
             <th>Vehicle Year</th>
+            <!--Filtering by year-->
             <td>
                 <select name="year" id="year">
                     <option value="" {% if not selected_year %}selected {%endif%}>--</option>
@@ -41,6 +44,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Vehicle Body</th>
             <td>
+                <!--Filterin by body style-->
                 <select name="body" id="body">
                     <option value=""{% if not selected_body %}selected {%endif%}>--</option>
                     {% for body in bodies%}
@@ -52,6 +56,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Number of Cylinders</th>
             <td>
+                <!--Filtering by engine size-->
                 <select name="engine" id="engine">
                     <option value="" {% if not selected_engine %} selected {% endif %}>--</option>
                     {% for engine in engines %}
@@ -63,6 +68,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Max MSRP</th>
             <td>
+                <!--Filtering by max MSRP (all vehicles under the selected value will be shown)-->
                 <select name="max_msrp" id="max_msrp">
                     <option value="" {% if not max_msrp %} selected {% endif %}>--</option>
                     {% for msrp in msrps %}
@@ -74,6 +80,7 @@ will be included in vehicle_list.html-->
         <tr>
             <th>Minimum MPG</th>
             <td>
+                <!--Filtering by min mpg (all vehicles above this value will be shown)-->
                 <select name="min_mpg" id="min_mpg">
                     <option value="" {% if not min_mpg %} selected {% endif%}>--</option>
                     {% for mpg in mpgs %}
